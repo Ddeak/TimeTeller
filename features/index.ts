@@ -1,2 +1,2 @@
-export { CountDownScreen } from './CountDown/CountDownScreen';
-export { CompareDatesScreen } from './CompareDates/CompareDatesScreen';
+export { CompareDatesScreen } from './Compare/CompareDatesScreen';
+export { OperationScreen } from './Operation/OperationScreen';

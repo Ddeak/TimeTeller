@@ -65,5 +65,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  text: {},
+  text: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    opacity: 0.7,
+    color: theme.PRIMARY_COLOR,
+  },
 });

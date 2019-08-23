@@ -3,38 +3,24 @@ import { View, StyleSheet } from 'react-native';
 import { Title } from 'react-native-paper';
 
 import { LargeDate } from '../common';
-import { CompareDisplay } from './CompareDisplay';
 import { reducer, initialReducerState, Actions } from './reducer';
 
 import { theme } from '../../styles';
 
-export const CountDownScreen = () => {
+export const OperationScreen = () => {
   const [state, dispatch] = useReducer(reducer, initialReducerState);
-  const { difference, differenceType, startDate, compareDate } = state;
+  const { startDate } = state;
 
   const onChangeStartDate = (date: Date) => {
     dispatch(Actions.setStartDate(date));
   };
 
-  const onChangeCompareDate = (date: Date) => {
-    dispatch(Actions.setCompareDate(date));
-  };
-
-  const onDifferenceChange = (difference: string) =>
-    dispatch(Actions.setDifference(difference));
-
   return (
     <View style={styles.container}>
-      <Title style={styles.title}>Countdown</Title>
+      <Title style={styles.title}>Operation</Title>
       <View>
         <LargeDate date={startDate} onChange={onChangeStartDate} />
-        <LargeDate date={compareDate} onChange={onChangeCompareDate} />
       </View>
-      <CompareDisplay
-        differenceType={differenceType}
-        difference={difference}
-        onDifferenceChange={onDifferenceChange}
-      />
     </View>
   );
 };
