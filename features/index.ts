@@ -1,1 +1,2 @@
-export {HomeScreen} from './Home/HomeScreen';
+export { CountDownScreen } from './CountDown/CountDownScreen';
+export { CompareDatesScreen } from './CompareDates/CompareDatesScreen';

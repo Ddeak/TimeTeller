@@ -1,18 +1,14 @@
 import React from 'react';
-import { createDrawerNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Provider } from 'react-native-paper';
 
-import { HomeScreen } from './features';
+import { CountDownScreen, CompareDatesScreen } from './features';
 import { materialTheme } from './styles';
 
-const AppNavigator = createDrawerNavigator(
-  {
-    Home: HomeScreen,
-  },
-  {
-    initialRouteName: 'Home',
-  },
-);
+const AppNavigator = createBottomTabNavigator({
+  CountDown: CountDownScreen,
+  Compare: CompareDatesScreen,
+});
 
 const AppContainer = createAppContainer(AppNavigator);
 
