@@ -1,31 +1,52 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import { Button } from 'react-native-paper';
+
 import { theme } from '../../styles';
 
 interface PropsType {
   date: Date;
+  onChange: (date: Date) => void;
 }
 
-export const LargeDate = ({ date }: PropsType) => {
+export const LargeDate = ({ date, onChange }: PropsType) => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const toggleDatePicker = () => setShowDatePicker(!showDatePicker);
+
+  const displayDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+  const displayTime = `${date.getHours()}:${date.getUTCMinutes()}`;
+
+  const onDateChange = (date: Date) => {
+    onChange(date);
+    toggleDatePicker();
+  };
+
+  const onReset = () => {
+    onChange(new Date());
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <View style={styles.textFragment}>
-          <Text style={styles.text}>{date.getDate()}</Text>
-        </View>
-        <View style={styles.textFragment}>
-          <Text style={styles.text}>{date.getMonth()}</Text>
-        </View>
-        <View style={styles.textFragment}>
-          <Text style={styles.text}>{date.getFullYear()}</Text>
-        </View>
+      <DateTimePicker
+        isVisible={showDatePicker}
+        onConfirm={onDateChange}
+        onCancel={toggleDatePicker}
+        date={date}
+        mode="datetime"
+      />
+
+      <View style={styles.dateHolder}>
+        <Text style={styles.text}>{displayDate}</Text>
+        <Text style={styles.text}>{displayTime}</Text>
       </View>
-      <View style={styles.row}>
-        <View style={styles.textFragment}>
-          <Text style={styles.text}>
-            {`${date.getHours()}:${date.getUTCMinutes()}`}
-          </Text>
-        </View>
+      <View style={styles.buttonContainer}>
+        <Button mode="contained" onPress={toggleDatePicker}>
+          Change
+        </Button>
+        <Button icon="history" mode="contained" onPress={onReset}>
+          Set Now
+        </Button>
       </View>
     </View>
   );
@@ -33,17 +54,19 @@ export const LargeDate = ({ date }: PropsType) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '90%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  dateHolder: {
+    width: '60%',
     height: 85,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: theme.SECONDARY_COLOR,
     marginVertical: 10,
-  },
-  textFragment: {
-    width: '25%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderRadius: 5,
   },
   text: {
     fontSize: 26,
@@ -55,5 +78,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  buttonContainer: {
+    width: '35%',
+    height: 100,
+    justifyContent: 'space-evenly',
   },
 });

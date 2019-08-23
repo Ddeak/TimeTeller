@@ -8,7 +8,7 @@ export const theme = {
   SECONDARY_COLOR: 'rgb(252, 249, 255)',
   TEXT_COLOR: 'rgb(252, 249, 255)',
   DELETE_COLOR: 'rgb(237, 56, 132)',
-  SCREEN_BACKGROUND: 'rgb(232, 232, 232)',
+  SCREEN_BACKGROUND: 'rgb(141, 141, 141)',
 };
 
 export const materialTheme = {

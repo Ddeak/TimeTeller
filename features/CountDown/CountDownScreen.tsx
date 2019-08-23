@@ -1,37 +1,40 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, Fragment } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Title, Button } from 'react-native-paper';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import { Title } from 'react-native-paper';
 
 import { LargeDate } from '../common';
+import { CompareDisplay } from './CompareDisplay';
 import { reducer, initialReducerState, Actions } from './reducer';
 
 import { theme } from '../../styles';
 
 export const CountDownScreen = () => {
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialReducerState);
-
-  const toggleDatePicker = () => setShowDatePicker(!showDatePicker);
+  const { difference, differenceType, startDate, compareDate } = state;
 
   const onChangeStartDate = (date: Date) => {
-    dispatch(Actions.setStartDate(new Date(date)));
-    toggleDatePicker();
+    dispatch(Actions.setStartDate(date));
   };
+
+  const onChangeCompareDate = (date: Date) => {
+    dispatch(Actions.setCompareDate(date));
+  };
+
+  const onDifferenceChange = (difference: string) =>
+    dispatch(Actions.setDifference(difference));
 
   return (
     <View style={styles.container}>
-      <DateTimePicker
-        isVisible={showDatePicker}
-        onConfirm={onChangeStartDate}
-        onCancel={toggleDatePicker}
-        date={state.startDate}
+      <Title style={styles.title}>Countdown</Title>
+      <View>
+        <LargeDate date={startDate} onChange={onChangeStartDate} />
+        <LargeDate date={compareDate} onChange={onChangeCompareDate} />
+      </View>
+      <CompareDisplay
+        differenceType={differenceType}
+        difference={difference}
+        onDifferenceChange={onDifferenceChange}
       />
-      <Title>Countdown</Title>
-      <LargeDate date={state.startDate} />
-      <Button mode="contained" onPress={toggleDatePicker}>
-        Change
-      </Button>
     </View>
   );
 };
@@ -39,11 +42,12 @@ export const CountDownScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: theme.SCREEN_BACKGROUND,
+    paddingTop: 40,
   },
-  text: {
-    color: theme.SECONDARY_COLOR,
+  title: {
+    color: theme.PRIMARY_COLOR,
   },
 });
