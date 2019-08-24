@@ -7,7 +7,7 @@ import { theme } from '../../styles';
 interface PropsType {
   onChange: (newValue: string) => void;
   value: string;
-  targetDate?: Date;
+  targetDate: Date | null;
 }
 
 export const OperationDisplay = ({

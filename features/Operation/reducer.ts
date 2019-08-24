@@ -4,7 +4,7 @@ export interface IStateType {
   startDate: Date;
   operation: OperationTypes;
   value?: string;
-  targetDate?: Date;
+  targetDate: Date | null;
   timeType: TimeTypes;
 }
 
@@ -34,7 +34,7 @@ export const initialReducerState = {
   startDate: new Date(),
   operation: OperationTypes.Add,
   value: '',
-  targetDate: undefined,
+  targetDate: null,
   timeType: TimeTypes.Days,
 };
 
@@ -69,10 +69,10 @@ export const reducer = (state: IStateType, action: IActionType) => {
     case ActionTypes.UpdateStartDate: {
       if (!state.value) return { ...state, startDate: action.payload };
       const targetDate = calculateDate(
-        state.startDate,
+        action.payload,
         state.value,
         state.operation,
-        action.payload,
+        state.timeType,
       );
       return { ...state, startDate: action.payload, targetDate };
     }
