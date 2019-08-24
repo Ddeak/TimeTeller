@@ -4,7 +4,7 @@ import { TextInput, Text } from 'react-native-paper';
 
 import { theme } from '../../styles';
 
-interface PropsType {
+interface IPropsType {
   onChange: (newValue: string) => void;
   value: string;
   targetDate: Date | null;
@@ -14,7 +14,7 @@ export const OperationDisplay = ({
   onChange,
   value,
   targetDate,
-}: PropsType) => {
+}: IPropsType) => {
   const displayDate = targetDate
     ? `${targetDate.getDate()}/${targetDate.getMonth()}/${targetDate.getFullYear()}`
     : '';

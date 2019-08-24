@@ -4,12 +4,12 @@ import { Button } from 'react-native-paper';
 
 import { TimeTypes } from './reducer';
 
-interface ButtonsProps {
+interface IButtonsProps {
   selectedType: TimeTypes;
   onChange: (type: TimeTypes) => void;
 }
 
-export const TimeButtons = ({ onChange, selectedType }: ButtonsProps) => {
+export const TimeButtons = ({ onChange, selectedType }: IButtonsProps) => {
   return (
     <View style={styles.container}>
       <Button

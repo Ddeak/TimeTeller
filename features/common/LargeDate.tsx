@@ -5,12 +5,12 @@ import { Button } from 'react-native-paper';
 
 import { theme } from '../../styles';
 
-interface PropsType {
+interface IPropsType {
   date: Date;
   onChange: (date: Date) => void;
 }
 
-export const LargeDate = ({ date, onChange }: PropsType) => {
+export const LargeDate = ({ date, onChange }: IPropsType) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const toggleDatePicker = () => setShowDatePicker(!showDatePicker);
 

@@ -4,7 +4,7 @@ import { Button } from 'react-native-paper';
 
 import { OperationTypes } from './reducer';
 
-interface ButtonsProps {
+interface IButtonsProps {
   activeOperation: OperationTypes;
   onChange: (operation: OperationTypes) => void;
 }
@@ -12,7 +12,7 @@ interface ButtonsProps {
 export const OperationButtons = ({
   onChange,
   activeOperation,
-}: ButtonsProps) => {
+}: IButtonsProps) => {
   return (
     <View style={styles.container}>
       <Button

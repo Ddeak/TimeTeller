@@ -5,7 +5,7 @@ import { Button, Text } from 'react-native-paper';
 import { DifferenceTypes } from './reducer';
 import { theme } from '../../styles';
 
-interface PropsType {
+interface IPropsType {
   differenceType: string;
   difference: string;
   onDifferenceChange: (difference: string) => void;
@@ -15,7 +15,7 @@ export const CompareDisplay = ({
   difference,
   differenceType,
   onDifferenceChange,
-}: PropsType) => {
+}: IPropsType) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
