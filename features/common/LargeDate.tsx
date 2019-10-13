@@ -14,7 +14,8 @@ export const LargeDate = ({ date, onChange }: IPropsType) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const toggleDatePicker = () => setShowDatePicker(!showDatePicker);
 
-  const displayDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+  const displayDate = `${date.getDate()}/${date.getMonth() +
+    1}/${date.getFullYear()}`;
   const displayTime = `${date.getHours()}:${date.getUTCMinutes()}`;
 
   const onDateChange = (date: Date) => {

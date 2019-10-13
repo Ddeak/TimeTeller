@@ -16,7 +16,8 @@ export const OperationDisplay = ({
   targetDate,
 }: IPropsType) => {
   const displayDate = targetDate
-    ? `${targetDate.getDate()}/${targetDate.getMonth()}/${targetDate.getFullYear()}`
+    ? `${targetDate.getDate()}/${targetDate.getMonth() +
+        1}/${targetDate.getFullYear()}`
     : '';
   const minutes = targetDate ? ('0' + targetDate.getMinutes()).slice(-2) : '';
   const displayTime = targetDate ? `${targetDate.getHours()}:${minutes}` : '';
